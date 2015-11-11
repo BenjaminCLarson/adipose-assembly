@@ -5,13 +5,18 @@ __author__ = 'blarson2'
 from random import *
 import datetime
 
+
 def shuff(deck):
     temp = []
+    seed(datetime)
     for i in deck:
         popped_elem = deck.index(choice(deck))
         temp.append(deck.pop(popped_elem))
+    for i in temp:
+        print(temp[i])
 
     return temp
+
 
 def main():
     minor = ['ace ', 'deuce ', 'three ', 'four ', 'five ', 'six ', 'seven ', 'eight ',
@@ -29,7 +34,7 @@ def main():
     for i in range(80):
         deck.append(i)
 
-    table = ['0', '1', '2', '3'],[]
+    table = ['0', '1', '2', '3'], []
 
     deck = shuff(deck)
 
