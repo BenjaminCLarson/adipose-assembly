@@ -1,47 +1,69 @@
 __author__ = 'blarson2'
 
-# !/usr/local/bin/python
-
 from random import *
 import datetime
 
 
 def shuff(deck):
-    temp = []
+    temp = deck
     seed(datetime)
     for i in deck:
-        popped_elem = deck.index(choice(deck))
-        temp.append(deck.pop(popped_elem))
+        popped_elem = temp.index(choice(temp))
+        deck.insert(i, temp.pop(popped_elem))
     for i in temp:
         print(temp[i])
 
     return temp
 
 
+def print_deck(table):
+
+    hand_string = ["north has ", "east has ", "south has ", "west has "]
+    minor = ["the deuce ", "the three ", "the four ", "the five ", "the six ", "the seven ", "the eight ",
+             "the nine ", "the ten ", "the page ", "the knight ", "the queen ", "the king ", "the ace "]
+
+    suit = ["of wands.", "of cups.", "of swords.", "of coins."]
+
+    major = ["the magician.", "the priestess.", "the empress.", "the emperor.", "the hierophant.", "the lovers.",
+             "the chariot.", "strength.", "the hermit.", "fortune.", "lust.", "justice","the hanged man.",
+             "death.", "temperance.", "the devil.", "the tower.", "the star.", "the moon.", "the sun.",
+             "judgement.", "the world.", "the universe.", "the fool."]
+
+    card_string = []
+
+    for i in range(4):
+        for j in range(20):
+            card = table[i][j]
+            cs_ind = ((i * 20) + j)
+
+            if card < 56:
+                minor_ind = card%14
+                suit_ind = card//4
+                card_string.append(hand_string[i] + minor[minor_ind] + suit[suit_ind])
+            else:
+                major_ind = card%56
+                card_string.append(hand_string[i] + major[major_ind])
+
+            print (card_string[cs_ind])
+
+
 def main():
-    minor = ['ace ', 'deuce ', 'three ', 'four ', 'five ', 'six ', 'seven ', 'eight ',
-             'nine ', 'ten ', 'page ', 'knight ', 'queen ', 'king ']
-
-    suit = ['of wands.', 'of cups.', 'of swords.', 'of coins.']
-
-    major = ['magician.', 'priestess.', 'empress.', 'emperor.', 'hierophant.', 'lovers.', 'chariot.',
-             '\b\b\b\bstrength.', 'hermit.', '\b\b\b\bfortune.', '\b\b\b\blust.', '\b\b\b\bjustice', 'hanged man.',
-             '\b\b\b\bdeath.', '\b\b\b\btemperance.', 'devil.', 'tower.', 'star.', 'moon.', 'sun.',
-             '\b\b\b\bjudgement.', 'world.', 'universe.', 'fool.']
 
     deck = []
 
     for i in range(80):
         deck.append(i)
 
-    table = ['0', '1', '2', '3'], []
-
     deck = shuff(deck)
-
+    table = []
+    hand = []
     for i in range(4):
-        for j in range(20):
-            table[i].append(deck.pop())
+        table.append(hand)
 
+    for i in range(80):
+        table[i%4].append(deck.pop())
+
+    print_deck(table)
 
 if __name__ == "__main__":
     main()

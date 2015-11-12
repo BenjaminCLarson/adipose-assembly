@@ -1,7 +1,5 @@
 __author__ = 'blarson2'
 
-# !/usr/local/bin/python
-
 from tkinter import *
 
 
