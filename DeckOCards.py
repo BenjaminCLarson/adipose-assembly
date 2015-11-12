@@ -10,8 +10,6 @@ def shuff(deck):
     for i in deck:
         popped_elem = temp.index(choice(temp))
         deck.insert(i, temp.pop(popped_elem))
-    for i in temp:
-        print(temp[i])
 
     return temp
 
@@ -38,11 +36,11 @@ def print_deck(table):
 
             if card < 56:
                 minor_ind = card%14
-                suit_ind = card//4
-                card_string.append(hand_string[i] + minor[minor_ind] + suit[suit_ind])
+                suit_ind = card//20
+                card_string.append((hand_string[i] + minor[minor_ind] + suit[suit_ind]))
             else:
                 major_ind = card%56
-                card_string.append(hand_string[i] + major[major_ind])
+                card_string.append((hand_string[i] + major[major_ind]))
 
             print (card_string[cs_ind])
 
@@ -56,9 +54,8 @@ def main():
 
     deck = shuff(deck)
     table = []
-    hand = []
     for i in range(4):
-        table.append(hand)
+        table.append(list())
 
     for i in range(80):
         table[i%4].append(deck.pop())
